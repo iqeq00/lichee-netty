@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>websocket 客户端</title>
+
+</head>
+<body>
+
+
+
+
+<form onsubmit="return false;">
+    <h3>发送数据</h3>
+    <textarea id="requestContent" style="width:400px;height:200px"></textarea>
+    <button onclick="send()">发送</button>
+
+    <h3>服务器的输出</h3>
+    <textarea id="responseContent" style="width:400px;height:200px"></textarea>
+    <button onclick="clean()">清空</button>
+</form>
+
+
+<script>
+
+    var requestContent = document.getElementById("requestContent");
+    var responseContent = document.getElementById("responseContent");
+
+    var webSocket;
+    if ( window.WebSocket ) {
+        webSocket = new WebSocket("ws://127.0.0.1:8899/lichee");
+        webSocket.onmessage = function (event) {
+            responseContent.value = responseContent.value + "\n" + event.data;
+        }
+        webSocket.onopen = function (event) {
+            responseContent.value = "连接开启！" + "\n";
+        }
+        webSocket.onclose = function (event) {
+            responseContent.value = responseContent.value + "\n" + "连接关闭！";
+        }
+    } else {
+        alert("浏览器不支持websocket");
+    }
+
+    function send(){
+        if ( window.WebSocket ) {
+            if (webSocket.readyState == WebSocket.OPEN ) {
+                webSocket.send(requestContent.value);
+            } else {
+                alert("连接未开启");
+            }
+        } else {
+            alert("浏览器不支持websocket");
+        }
+    }
+
+    function clean(){
+
+        responseContent.value = "";
+    }
+</script>
+
+</body>
+</html>

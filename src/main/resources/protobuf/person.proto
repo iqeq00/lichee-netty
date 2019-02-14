@@ -1,0 +1,17 @@
+/**
+ * protobuf指令：
+ * protoc --java_out=src\main\java  src\main\resources\protobuf\person.proto
+ */
+syntax = "proto2";
+
+package protobuf;
+
+option optimize_for = SPEED;
+option java_package = "com.lichee.protobuf.example.person";
+option java_outer_classname = "Person";
+
+message Student {
+    required string name = 1;
+    optional int32 age = 2;
+    optional string address = 3;
+}
