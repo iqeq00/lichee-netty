@@ -10,7 +10,7 @@ public interface HttpRequestOrBuilder extends
   /**
    * <code>string username = 1;</code>
    */
-  java.lang.String getUsername();
+  String getUsername();
   /**
    * <code>string username = 1;</code>
    */

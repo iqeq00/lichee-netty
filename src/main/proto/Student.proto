@@ -15,6 +15,19 @@ message HttpResponse {
     string realname = 2;
 }
 
+message StreamRequest {
+    int32 age = 1;
+}
+
+message StreamResponse {
+    string name = 1;
+    int32 age = 2;
+    string city = 3;
+}
+
 service StudentService {
+
     rpc getRealnameByUsername (HttpRequest) returns (HttpResponse) {}
+
+    rpc getStudentsByAge (StreamRequest) returns (stream StreamResponse) {}
 }

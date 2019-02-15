@@ -19,7 +19,7 @@ private static final long serialVersionUID = 0L;
     realname_ = "";
   }
 
-  @java.lang.Override
+  @Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
     return this.unknownFields;
@@ -30,7 +30,7 @@ private static final long serialVersionUID = 0L;
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
+      throw new NullPointerException();
     }
     int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -51,7 +51,7 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
+            String s = input.readStringRequireUtf8();
 
             realname_ = s;
             break;
@@ -70,29 +70,29 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.lichee.grpc.example.proto.StudentProto.internal_static_grpc_HttpResponse_descriptor;
+    return StudentProto.internal_static_grpc_HttpResponse_descriptor;
   }
 
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  protected FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.lichee.grpc.example.proto.StudentProto.internal_static_grpc_HttpResponse_fieldAccessorTable
+    return StudentProto.internal_static_grpc_HttpResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.lichee.grpc.example.proto.HttpResponse.class, com.lichee.grpc.example.proto.HttpResponse.Builder.class);
+            HttpResponse.class, Builder.class);
   }
 
   public static final int REALNAME_FIELD_NUMBER = 2;
-  private volatile java.lang.Object realname_;
+  private volatile Object realname_;
   /**
    * <code>string realname = 2;</code>
    */
-  public java.lang.String getRealname() {
-    java.lang.Object ref = realname_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
+  public String getRealname() {
+    Object ref = realname_;
+    if (ref instanceof String) {
+      return (String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
+      String s = bs.toStringUtf8();
       realname_ = s;
       return s;
     }
@@ -102,11 +102,11 @@ private static final long serialVersionUID = 0L;
    */
   public com.google.protobuf.ByteString
       getRealnameBytes() {
-    java.lang.Object ref = realname_;
-    if (ref instanceof java.lang.String) {
+    Object ref = realname_;
+    if (ref instanceof String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
+              (String) ref);
       realname_ = b;
       return b;
     } else {
@@ -145,15 +145,15 @@ private static final long serialVersionUID = 0L;
     return size;
   }
 
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
+  @Override
+  public boolean equals(final Object obj) {
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.lichee.grpc.example.proto.HttpResponse)) {
+    if (!(obj instanceof HttpResponse)) {
       return super.equals(obj);
     }
-    com.lichee.grpc.example.proto.HttpResponse other = (com.lichee.grpc.example.proto.HttpResponse) obj;
+    HttpResponse other = (HttpResponse) obj;
 
     boolean result = true;
     result = result && getRealname()
@@ -162,7 +162,7 @@ private static final long serialVersionUID = 0L;
     return result;
   }
 
-  @java.lang.Override
+  @Override
   public int hashCode() {
     if (memoizedHashCode != 0) {
       return memoizedHashCode;
@@ -176,69 +176,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static com.lichee.grpc.example.proto.HttpResponse parseFrom(
+  public static HttpResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.lichee.grpc.example.proto.HttpResponse parseFrom(
+  public static HttpResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.lichee.grpc.example.proto.HttpResponse parseFrom(
+  public static HttpResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.lichee.grpc.example.proto.HttpResponse parseFrom(
+  public static HttpResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.lichee.grpc.example.proto.HttpResponse parseFrom(byte[] data)
+  public static HttpResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.lichee.grpc.example.proto.HttpResponse parseFrom(
+  public static HttpResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.lichee.grpc.example.proto.HttpResponse parseFrom(java.io.InputStream input)
+  public static HttpResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.lichee.grpc.example.proto.HttpResponse parseFrom(
+  public static HttpResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.lichee.grpc.example.proto.HttpResponse parseDelimitedFrom(java.io.InputStream input)
+  public static HttpResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static com.lichee.grpc.example.proto.HttpResponse parseDelimitedFrom(
+  public static HttpResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.lichee.grpc.example.proto.HttpResponse parseFrom(
+  public static HttpResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.lichee.grpc.example.proto.HttpResponse parseFrom(
+  public static HttpResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -250,7 +250,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.lichee.grpc.example.proto.HttpResponse prototype) {
+  public static Builder newBuilder(HttpResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() {
@@ -258,9 +258,9 @@ private static final long serialVersionUID = 0L;
         ? new Builder() : new Builder().mergeFrom(this);
   }
 
-  @java.lang.Override
+  @Override
   protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
@@ -270,17 +270,17 @@ private static final long serialVersionUID = 0L;
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:grpc.HttpResponse)
-      com.lichee.grpc.example.proto.HttpResponseOrBuilder {
+      HttpResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.lichee.grpc.example.proto.StudentProto.internal_static_grpc_HttpResponse_descriptor;
+      return StudentProto.internal_static_grpc_HttpResponse_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.lichee.grpc.example.proto.StudentProto.internal_static_grpc_HttpResponse_fieldAccessorTable
+      return StudentProto.internal_static_grpc_HttpResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.lichee.grpc.example.proto.HttpResponse.class, com.lichee.grpc.example.proto.HttpResponse.Builder.class);
+              HttpResponse.class, Builder.class);
     }
 
     // Construct using com.lichee.grpc.example.proto.HttpResponse.newBuilder()
@@ -289,7 +289,7 @@ private static final long serialVersionUID = 0L;
     }
 
     private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       super(parent);
       maybeForceBuilderInitialization();
     }
@@ -307,23 +307,23 @@ private static final long serialVersionUID = 0L;
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.lichee.grpc.example.proto.StudentProto.internal_static_grpc_HttpResponse_descriptor;
+      return StudentProto.internal_static_grpc_HttpResponse_descriptor;
     }
 
-    public com.lichee.grpc.example.proto.HttpResponse getDefaultInstanceForType() {
-      return com.lichee.grpc.example.proto.HttpResponse.getDefaultInstance();
+    public HttpResponse getDefaultInstanceForType() {
+      return HttpResponse.getDefaultInstance();
     }
 
-    public com.lichee.grpc.example.proto.HttpResponse build() {
-      com.lichee.grpc.example.proto.HttpResponse result = buildPartial();
+    public HttpResponse build() {
+      HttpResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    public com.lichee.grpc.example.proto.HttpResponse buildPartial() {
-      com.lichee.grpc.example.proto.HttpResponse result = new com.lichee.grpc.example.proto.HttpResponse(this);
+    public HttpResponse buildPartial() {
+      HttpResponse result = new HttpResponse(this);
       result.realname_ = realname_;
       onBuilt();
       return result;
@@ -334,7 +334,7 @@ private static final long serialVersionUID = 0L;
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
+        Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -347,25 +347,25 @@ private static final long serialVersionUID = 0L;
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
+        int index, Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
+        Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.lichee.grpc.example.proto.HttpResponse) {
-        return mergeFrom((com.lichee.grpc.example.proto.HttpResponse)other);
+      if (other instanceof HttpResponse) {
+        return mergeFrom((HttpResponse)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.lichee.grpc.example.proto.HttpResponse other) {
-      if (other == com.lichee.grpc.example.proto.HttpResponse.getDefaultInstance()) return this;
+    public Builder mergeFrom(HttpResponse other) {
+      if (other == HttpResponse.getDefaultInstance()) return this;
       if (!other.getRealname().isEmpty()) {
         realname_ = other.realname_;
         onChanged();
@@ -383,11 +383,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.lichee.grpc.example.proto.HttpResponse parsedMessage = null;
+      HttpResponse parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.lichee.grpc.example.proto.HttpResponse) e.getUnfinishedMessage();
+        parsedMessage = (HttpResponse) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -397,20 +397,20 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object realname_ = "";
+    private Object realname_ = "";
     /**
      * <code>string realname = 2;</code>
      */
-    public java.lang.String getRealname() {
-      java.lang.Object ref = realname_;
-      if (!(ref instanceof java.lang.String)) {
+    public String getRealname() {
+      Object ref = realname_;
+      if (!(ref instanceof String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         realname_ = s;
         return s;
       } else {
-        return (java.lang.String) ref;
+        return (String) ref;
       }
     }
     /**
@@ -418,11 +418,11 @@ private static final long serialVersionUID = 0L;
      */
     public com.google.protobuf.ByteString
         getRealnameBytes() {
-      java.lang.Object ref = realname_;
+      Object ref = realname_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         realname_ = b;
         return b;
       } else {
@@ -433,7 +433,7 @@ private static final long serialVersionUID = 0L;
      * <code>string realname = 2;</code>
      */
     public Builder setRealname(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -480,12 +480,12 @@ private static final long serialVersionUID = 0L;
   }
 
   // @@protoc_insertion_point(class_scope:grpc.HttpResponse)
-  private static final com.lichee.grpc.example.proto.HttpResponse DEFAULT_INSTANCE;
+  private static final HttpResponse DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.lichee.grpc.example.proto.HttpResponse();
+    DEFAULT_INSTANCE = new HttpResponse();
   }
 
-  public static com.lichee.grpc.example.proto.HttpResponse getDefaultInstance() {
+  public static HttpResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
@@ -503,12 +503,12 @@ private static final long serialVersionUID = 0L;
     return PARSER;
   }
 
-  @java.lang.Override
+  @Override
   public com.google.protobuf.Parser<HttpResponse> getParserForType() {
     return PARSER;
   }
 
-  public com.lichee.grpc.example.proto.HttpResponse getDefaultInstanceForType() {
+  public HttpResponse getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 
