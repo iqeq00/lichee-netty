@@ -4,11 +4,8 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
-/**
- * server报错，回去用mac再试试
- * io.grpc.netty.NettyServerTransport notifyTerminated
- */
 public class GrpcServer {
 
     private Server server;
@@ -16,6 +13,12 @@ public class GrpcServer {
     private void start() throws IOException {
         this.server = ServerBuilder.forPort(8899).addService(new StudentServiceImpl()).build().start();
         System.out.println("Server started!");
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("Close JVM!");
+            GrpcServer.this.stop();
+        }));
+        System.out.println(LocalDateTime.now());
     }
 
     private void stop() {
@@ -24,6 +27,11 @@ public class GrpcServer {
         }
     }
 
+    /**
+     * 触发jvm钩子
+     *
+     * this.server.awaitTermination(3000, TimeUnit.MILLISECONDS);
+     */
     private void awaitTermination() throws InterruptedException {
         if(null != this.server) {
             this.server.awaitTermination();
