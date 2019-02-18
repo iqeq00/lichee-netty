@@ -25,9 +25,15 @@ message StreamResponse {
     string city = 3;
 }
 
+message StreamResponseList {
+    repeated StreamResponse streamResponse = 1;
+}
+
 service StudentService {
 
     rpc getRealnameByUsername (HttpRequest) returns (HttpResponse) {}
 
     rpc getStudentsByAge (StreamRequest) returns (stream StreamResponse) {}
+
+    rpc getStudentsWrapperByAges (stream StreamRequest) returns (StreamResponseList) {}
 }

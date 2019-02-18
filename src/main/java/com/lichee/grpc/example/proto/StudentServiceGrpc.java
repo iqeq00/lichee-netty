@@ -91,6 +91,38 @@ public final class StudentServiceGrpc {
      return getGetStudentsByAgeMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<StreamRequest,
+      StreamResponseList> getGetStudentsWrapperByAgesMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "getStudentsWrapperByAges",
+      requestType = StreamRequest.class,
+      responseType = StreamResponseList.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+  public static io.grpc.MethodDescriptor<StreamRequest,
+      StreamResponseList> getGetStudentsWrapperByAgesMethod() {
+    io.grpc.MethodDescriptor<StreamRequest, StreamResponseList> getGetStudentsWrapperByAgesMethod;
+    if ((getGetStudentsWrapperByAgesMethod = StudentServiceGrpc.getGetStudentsWrapperByAgesMethod) == null) {
+      synchronized (StudentServiceGrpc.class) {
+        if ((getGetStudentsWrapperByAgesMethod = StudentServiceGrpc.getGetStudentsWrapperByAgesMethod) == null) {
+          StudentServiceGrpc.getGetStudentsWrapperByAgesMethod = getGetStudentsWrapperByAgesMethod = 
+              io.grpc.MethodDescriptor.<StreamRequest, StreamResponseList>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "grpc.StudentService", "getStudentsWrapperByAges"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  StreamRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  StreamResponseList.getDefaultInstance()))
+                  .setSchemaDescriptor(new StudentServiceMethodDescriptorSupplier("getStudentsWrapperByAges"))
+                  .build();
+          }
+        }
+     }
+     return getGetStudentsWrapperByAgesMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -132,6 +164,13 @@ public final class StudentServiceGrpc {
       asyncUnimplementedUnaryCall(getGetStudentsByAgeMethod(), responseObserver);
     }
 
+    /**
+     */
+    public io.grpc.stub.StreamObserver<StreamRequest> getStudentsWrapperByAges(
+        io.grpc.stub.StreamObserver<StreamResponseList> responseObserver) {
+      return asyncUnimplementedStreamingCall(getGetStudentsWrapperByAgesMethod(), responseObserver);
+    }
+
     @Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -148,6 +187,13 @@ public final class StudentServiceGrpc {
                 StreamRequest,
                 StreamResponse>(
                   this, METHODID_GET_STUDENTS_BY_AGE)))
+          .addMethod(
+            getGetStudentsWrapperByAgesMethod(),
+            asyncClientStreamingCall(
+              new MethodHandlers<
+                StreamRequest,
+                StreamResponseList>(
+                  this, METHODID_GET_STUDENTS_WRAPPER_BY_AGES)))
           .build();
     }
   }
@@ -184,6 +230,14 @@ public final class StudentServiceGrpc {
                                  io.grpc.stub.StreamObserver<StreamResponse> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getGetStudentsByAgeMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public io.grpc.stub.StreamObserver<StreamRequest> getStudentsWrapperByAges(
+        io.grpc.stub.StreamObserver<StreamResponseList> responseObserver) {
+      return asyncClientStreamingCall(
+          getChannel().newCall(getGetStudentsWrapperByAgesMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -250,6 +304,7 @@ public final class StudentServiceGrpc {
 
   private static final int METHODID_GET_REALNAME_BY_USERNAME = 0;
   private static final int METHODID_GET_STUDENTS_BY_AGE = 1;
+  private static final int METHODID_GET_STUDENTS_WRAPPER_BY_AGES = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -286,6 +341,9 @@ public final class StudentServiceGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_GET_STUDENTS_WRAPPER_BY_AGES:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.getStudentsWrapperByAges(
+              (io.grpc.stub.StreamObserver<StreamResponseList>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -339,6 +397,7 @@ public final class StudentServiceGrpc {
               .setSchemaDescriptor(new StudentServiceFileDescriptorSupplier())
               .addMethod(getGetRealnameByUsernameMethod())
               .addMethod(getGetStudentsByAgeMethod())
+              .addMethod(getGetStudentsWrapperByAgesMethod())
               .build();
         }
       }
