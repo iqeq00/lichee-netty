@@ -39,6 +39,16 @@ public final class StudentProto {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_grpc_StreamResponseList_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_grpc_StreamRequestInfo_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_grpc_StreamRequestInfo_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_grpc_StreamResponseInfo_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_grpc_StreamResponseInfo_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -54,14 +64,18 @@ public final class StudentProto {
       "\n\016StreamResponse\022\014\n\004name\030\001 \001(\t\022\013\n\003age\030\002 " +
       "\001(\005\022\014\n\004city\030\003 \001(\t\"B\n\022StreamResponseList\022" +
       ",\n\016streamResponse\030\001 \003(\0132\024.grpc.StreamRes" +
-      "ponse2\344\001\n\016StudentService\022@\n\025getRealnameB" +
-      "yUsername\022\021.grpc.HttpRequest\032\022.grpc.Http" +
-      "Response\"\000\022A\n\020getStudentsByAge\022\023.grpc.St" +
-      "reamRequest\032\024.grpc.StreamResponse\"\0000\001\022M\n" +
-      "\030getStudentsWrapperByAges\022\023.grpc.StreamR" +
-      "equest\032\030.grpc.StreamResponseList\"\000(\001B/\n\035" +
-      "com.lichee.grpc.example.protoB\014StudentPr" +
-      "otoP\001b\006proto3"
+      "ponse\")\n\021StreamRequestInfo\022\024\n\014request_in" +
+      "fo\030\001 \001(\t\"+\n\022StreamResponseInfo\022\025\n\rrespon" +
+      "se_info\030\001 \001(\t2\247\002\n\016StudentService\022@\n\025getR" +
+      "ealnameByUsername\022\021.grpc.HttpRequest\032\022.g" +
+      "rpc.HttpResponse\"\000\022A\n\020getStudentsByAge\022\023" +
+      ".grpc.StreamRequest\032\024.grpc.StreamRespons" +
+      "e\"\0000\001\022M\n\030getStudentsWrapperByAges\022\023.grpc" +
+      ".StreamRequest\032\030.grpc.StreamResponseList" +
+      "\"\000(\001\022A\n\006biTalk\022\027.grpc.StreamRequestInfo\032" +
+      "\030.grpc.StreamResponseInfo\"\000(\0010\001B/\n\035com.l" +
+      "ichee.grpc.example.protoB\014StudentProtoP\001" +
+      "b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -105,6 +119,18 @@ public final class StudentProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_grpc_StreamResponseList_descriptor,
         new String[] { "StreamResponse", });
+    internal_static_grpc_StreamRequestInfo_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_grpc_StreamRequestInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_grpc_StreamRequestInfo_descriptor,
+        new String[] { "RequestInfo", });
+    internal_static_grpc_StreamResponseInfo_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_grpc_StreamResponseInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_grpc_StreamResponseInfo_descriptor,
+        new String[] { "ResponseInfo", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

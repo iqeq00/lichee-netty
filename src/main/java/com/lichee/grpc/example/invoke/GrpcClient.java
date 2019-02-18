@@ -5,6 +5,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 
+import java.time.LocalDateTime;
 import java.util.Iterator;
 
 public class GrpcClient {
@@ -65,11 +66,43 @@ public class GrpcClient {
         streamRequestStreamObserver.onCompleted();
 
         try {
+            //防止异步线程过早结束，而观察不到返回结果！
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         System.out.println("-------------客户端请求Stream-------------");
+
+        System.out.println("-------------双向Stream-------------");
+        StreamObserver<StreamRequestInfo> streamRequestObserver = studentServiceStub.biTalk(new StreamObserver<StreamResponseInfo>(){
+
+            @Override
+            public void onNext(StreamResponseInfo value) {
+                System.out.println(value.getResponseInfo());
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                System.out.println(t.getMessage());
+            }
+
+            @Override
+            public void onCompleted() {
+                System.out.println("onComleted!");
+            }
+        });
+
+        for (int i = 0; i < 10; i++) {
+            streamRequestObserver.onNext(StreamRequestInfo.newBuilder().setRequestInfo(LocalDateTime.now().toString()).build());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("-------------双向Stream-------------");
+
+
         //关闭channel，不然服务端会报错“远程主机强迫关闭了一个现有的连接。”
         managedChannel.shutdown();
 

@@ -1,7 +1,10 @@
 package com.lichee.grpc.example.invoke;
 
 import com.lichee.grpc.example.proto.*;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import io.grpc.stub.StreamObserver;
+
+import java.util.UUID;
 
 public class StudentServiceImpl extends StudentServiceGrpc.StudentServiceImplBase {
 
@@ -49,6 +52,50 @@ public class StudentServiceImpl extends StudentServiceGrpc.StudentServiceImplBas
                 StreamResponseList streamResponseList = StreamResponseList.newBuilder().addStreamResponse(streamResponse)
                         .addStreamResponse(streamResponse2).build();
                 responseObserver.onNext(streamResponseList);
+                responseObserver.onCompleted();
+            }
+        };
+    }
+
+//    @Override
+//    public StreamObserver<StreamRequest> biTalk(StreamObserver<StreamResponse> responseObserver) {
+//        //服务器接收到客户端的消息后，返回一个消息给客户端
+//        return new StreamObserver<StreamRequest>() {
+//            @Override
+//            public void onNext(StreamRequest value) {
+//                System.out.println("收到客户端的信息：" + value.getAge());
+//                responseObserver.onNext(StreamResponse.newBuilder().setName("里奇").setAge(18).setCity("成都").build());
+//            }
+//
+//            @Override
+//            public void onError(Throwable t) {
+//                System.out.println(t.getMessage());
+//            }
+//
+//            @Override
+//            public void onCompleted() {
+//                responseObserver.onCompleted();
+//            }
+//        };
+//    }
+
+
+    @Override
+    public StreamObserver<StreamRequestInfo> biTalk(StreamObserver<StreamResponseInfo> responseObserver) {
+        return new StreamObserver<StreamRequestInfo>() {
+            @Override
+            public void onNext(StreamRequestInfo value) {
+                System.out.println("收到客户端的信息：" + value.getRequestInfo());
+                responseObserver.onNext(StreamResponseInfo.newBuilder().setResponseInfo(UUID.randomUUID().toString()).build());
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                System.out.println(t.getMessage());
+            }
+
+            @Override
+            public void onCompleted() {
                 responseObserver.onCompleted();
             }
         };

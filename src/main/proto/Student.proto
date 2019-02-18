@@ -29,6 +29,14 @@ message StreamResponseList {
     repeated StreamResponse streamResponse = 1;
 }
 
+message StreamRequestInfo {
+    string request_info = 1;
+}
+
+message StreamResponseInfo {
+    string response_info = 1;
+}
+
 service StudentService {
 
     rpc getRealnameByUsername (HttpRequest) returns (HttpResponse) {}
@@ -36,4 +44,6 @@ service StudentService {
     rpc getStudentsByAge (StreamRequest) returns (stream StreamResponse) {}
 
     rpc getStudentsWrapperByAges (stream StreamRequest) returns (StreamResponseList) {}
+
+    rpc biTalk (stream StreamRequestInfo) returns (stream StreamResponseInfo) {}
 }
