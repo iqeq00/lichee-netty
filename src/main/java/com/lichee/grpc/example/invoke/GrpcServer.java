@@ -12,7 +12,7 @@ public class GrpcServer {
 
     private void start() throws IOException {
         this.server = ServerBuilder.forPort(8899).addService(new StudentServiceImpl()).build().start();
-        System.out.println("Server started!");
+        System.out.println("GRPC java server started!");
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("Close JVM!");

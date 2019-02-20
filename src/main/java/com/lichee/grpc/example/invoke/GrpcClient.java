@@ -19,7 +19,7 @@ public class GrpcClient {
     public static void base(StudentServiceGrpc.StudentServiceBlockingStub studentServiceBlockingStub) {
 
         System.out.println("-------------基础模式-------------");
-        HttpRequest request = HttpRequest.newBuilder().setUsername("Java Client: 里奇").build();
+        HttpRequest request = HttpRequest.newBuilder().setUsername("Java client: 里奇").build();
         HttpResponse response = studentServiceBlockingStub.getRealnameByUsername(request);
         System.out.println("收到服务器的返回信息：" + response.getRealname());
         System.out.println("-------------基础模式-------------");
