@@ -18,7 +18,7 @@ var packageDefinition = protoLoader.loadSync(
 var grpcService = grpc.loadPackageDefinition(packageDefinition).grpc;
 
 var client = new grpcService.StudentService("localhost:8899", grpc.credentials.createInsecure());
-client.getRealnameByUsername({username: "Node Client: 里奇"}, function (error, respData) {
+client.getRealnameByUsername({username: "Node dynamic client: 里奇"}, function (error, respData) {
     console.log("收到服务器的返回信息: " + respData.realname);
     grpc.closeClient(client);
 });

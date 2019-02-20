@@ -26,11 +26,11 @@ server.addService(grpcService.StudentService.service, {
 });
 server.bind("localhost:8899", grpc.ServerCredentials.createInsecure());
 server.start();
-console.log("grpc node server start!")
+console.log("GRPC node server started by dynamic!")
 
 function getRealnameByUsername(call, callback) {
     console.log("收到客户端的请求信息: " + call.request.username);
-    callback(null, {realname: "Node Server: 里奇"});
+    callback(null, {realname: "Node dynamic server: 里奇"});
 }
 
 function getStudentsByAge() {
