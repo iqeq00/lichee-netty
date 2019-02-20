@@ -7,35 +7,45 @@ import io.grpc.stub.StreamObserver;
 
 import java.time.LocalDateTime;
 import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
 
 public class GrpcClient {
 
-    public static void main(String[] args) {
 
-        ManagedChannel managedChannel = ManagedChannelBuilder.forAddress("localhost",8899)
-                .usePlaintext().build();
-        StudentServiceGrpc.StudentServiceBlockingStub studentServiceBlockingStub = StudentServiceGrpc
-                .newBlockingStub(managedChannel);
-
-        StudentServiceGrpc.StudentServiceStub studentServiceStub = StudentServiceGrpc.newStub(managedChannel);
-
+    /**
+     * 基础调用模式
+     * 单向请求-单向返回
+     */
+    public static void base(StudentServiceGrpc.StudentServiceBlockingStub studentServiceBlockingStub) {
 
         System.out.println("-------------基础模式-------------");
-        HttpRequest request = HttpRequest.newBuilder().setUsername("lichee").build();
+        HttpRequest request = HttpRequest.newBuilder().setUsername("Java Client: 里奇").build();
         HttpResponse response = studentServiceBlockingStub.getRealnameByUsername(request);
         System.out.println("收到服务器的返回信息：" + response.getRealname());
         System.out.println("-------------基础模式-------------");
+    }
 
+    /**
+     * 服务器Stream模式
+     * 单向请求-Stream返回
+     */
+    public static void serverStream(StudentServiceGrpc.StudentServiceBlockingStub studentServiceBlockingStub) {
 
         System.out.println("-------------服务器返回Stream-------------");
         StreamRequest streamRequest = StreamRequest.newBuilder().setAge(20).build();
         Iterator<StreamResponse> iterator = studentServiceBlockingStub.getStudentsByAge(streamRequest);
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             StreamResponse streamResponse = iterator.next();
             System.out.println(streamResponse.getName() + ", " + streamResponse.getAge() + ", " + streamResponse.getCity());
         }
         System.out.println("-------------服务器返回Stream-------------");
+    }
 
+    /**
+     * 客户端Stream模式
+     * Stream请求-单向返回
+     */
+    public static void clientStream(StudentServiceGrpc.StudentServiceStub studentServiceStub) {
 
         System.out.println("-------------客户端请求Stream-------------");
         //第一步，新建一个获取服务器端回调的对象
@@ -64,7 +74,6 @@ public class GrpcClient {
         streamRequestStreamObserver.onNext(StreamRequest.newBuilder().setAge(40).build());
         streamRequestStreamObserver.onNext(StreamRequest.newBuilder().setAge(50).build());
         streamRequestStreamObserver.onCompleted();
-
         try {
             //防止异步线程过早结束，而观察不到返回结果！
             Thread.sleep(5000);
@@ -72,9 +81,16 @@ public class GrpcClient {
             e.printStackTrace();
         }
         System.out.println("-------------客户端请求Stream-------------");
+    }
+
+    /**
+     * 双向Stream模式
+     * Stream请求-Stream返回
+     */
+    public static void bothStream(StudentServiceGrpc.StudentServiceStub studentServiceStub) {
 
         System.out.println("-------------双向Stream-------------");
-        StreamObserver<StreamRequestInfo> streamRequestObserver = studentServiceStub.biTalk(new StreamObserver<StreamResponseInfo>(){
+        StreamObserver<StreamRequestInfo> streamRequestObserver = studentServiceStub.biTalk(new StreamObserver<StreamResponseInfo>() {
 
             @Override
             public void onNext(StreamResponseInfo value) {
@@ -91,8 +107,7 @@ public class GrpcClient {
                 System.out.println("onComleted!");
             }
         });
-
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             streamRequestObserver.onNext(StreamRequestInfo.newBuilder().setRequestInfo(LocalDateTime.now().toString()).build());
             try {
                 Thread.sleep(1000);
@@ -101,10 +116,23 @@ public class GrpcClient {
             }
         }
         System.out.println("-------------双向Stream-------------");
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+
+        ManagedChannel managedChannel = ManagedChannelBuilder.forAddress("localhost", 8899)
+                .usePlaintext().build();
+        StudentServiceGrpc.StudentServiceBlockingStub studentServiceBlockingStub = StudentServiceGrpc
+                .newBlockingStub(managedChannel);
+
+        StudentServiceGrpc.StudentServiceStub studentServiceStub = StudentServiceGrpc.newStub(managedChannel);
 
 
+        base(studentServiceBlockingStub);
+        serverStream(studentServiceBlockingStub);
+        clientStream(studentServiceStub);
+        bothStream(studentServiceStub);
         //关闭channel，不然服务端会报错“远程主机强迫关闭了一个现有的连接。”
-        managedChannel.shutdown();
-
+        managedChannel.shutdown().awaitTermination(5, TimeUnit.SECONDS);;
     }
 }

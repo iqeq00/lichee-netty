@@ -13,7 +13,7 @@ public class StudentServiceImpl extends StudentServiceGrpc.StudentServiceImplBas
 
         System.out.println("基础类型的example，也是实际使用中用的最多的");
         System.out.println("收到客户端的信息：" + request.getUsername());
-        HttpResponse response = HttpResponse.newBuilder().setRealname("里奇").build();
+        HttpResponse response = HttpResponse.newBuilder().setRealname("Java Server: git 里奇").build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
