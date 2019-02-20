@@ -12,7 +12,7 @@ public class StudentServiceImpl extends StudentServiceGrpc.StudentServiceImplBas
     public void getRealnameByUsername(HttpRequest request, StreamObserver<HttpResponse> responseObserver) {
 
         System.out.println("基础类型的example，也是实际使用中用的最多的");
-        System.out.println("收到客户端的信息：" + request.getUsername());
+        System.out.println("收到客户端的请求信息：" + request.getUsername());
         HttpResponse response = HttpResponse.newBuilder().setRealname("Java Server: 里奇").build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
