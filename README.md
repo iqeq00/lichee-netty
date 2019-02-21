@@ -8,6 +8,7 @@
 - Apache Thrift
 - GRPC
 - Node.js
+- Java NIO
 
 #### Developer
 
