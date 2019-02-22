@@ -44,12 +44,17 @@ public class FileChannelCase {
             ByteBuffer byteBuffer = ByteBuffer.allocate(50);
 
             byte[] content = "java nio hello world!".getBytes();
+            System.out.println("content length: " + content.length);
             for (int i = 0; i < content.length ; i++) {
                 byteBuffer.put(content[i]);
             }
-
+//            bufferStatus(byteBuffer);
             byteBuffer.flip();
+//            bufferStatus(byteBuffer);
             fileChannel.write(byteBuffer);
+//            byteBuffer.flip();
+//            byteBuffer.put("java nio hello world!!".getBytes());
+//            bufferStatus(byteBuffer);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -61,9 +66,16 @@ public class FileChannelCase {
         }
     }
 
+    private static void bufferStatus(ByteBuffer byteBuffer) {
+        System.out.println(byteBuffer.position());
+        System.out.println(byteBuffer.limit());
+        System.out.println(byteBuffer.capacity());
+        System.out.println("=====================");
+    }
+
     public static void main(String[] args) {
 
-        inputFileChannel();
+//        inputFileChannel();
         outputFileChannel();
     }
 
