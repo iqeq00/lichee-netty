@@ -5,3 +5,4 @@ gen-java/
 out/
 node_modules/
 *.log
+*.txt
